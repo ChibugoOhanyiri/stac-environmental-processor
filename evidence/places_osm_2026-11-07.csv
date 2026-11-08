@@ -1,0 +1,12 @@
+name,source,lat,lon,osm_type,osm_id,osm_class_type,osm_display_name,note
+"Orchid Road, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4310700,3.5428627,way,1450662341,primary,"Orchid Road, Eleganza, Lekki Peninsula II, Eti Osa, Lagos, Nigeria",
+"Chevron Drive, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4416223,3.5307510,way,606203337,secondary,"Chevron Drive, Chevron, Lekki Peninsula II, Eti Osa, Lagos, Nigeria",
+"Ikota, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4520840,3.5683019,way,1559048407,residential,"Ikota, Lekki Phase II, Ajah, Eti Osa, Lagos, Nigeria",
+"Osapa London, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4445362,3.5083077,node,14169008681,suburb,"Osapa London, Jakande, Eti Osa, Lagos, 101244, Nigeria",
+"Victoria Garden City, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4640452,3.5465209,way,783379225,residential,"Victoria Garden City, Eleganza, Ajah, Eti Osa, Lagos, Nigeria",
+"Agungi, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4470015,3.5181123,node,14169008682,suburb,"Agungi, Lekki Peninsula II, Eti Osa, Lagos, 101244, Nigeria",
+"Jakande, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4316805,3.4527640,way,152870304,residential,"Jakande Crescent, Maroko, Lekki Phase I, Eti Osa, Lagos, 106104, Nigeria","Jakande hit is Jakande Crescent (Maroko), probably not the Lekki Jakande estate"
+"Elegushi, Lekki, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4360860,3.4881170,way,152882207,residential,"Oba Yekini Elegushi Road, Ikate, Chisco, Lekki Phase I, Eti Osa, Lagos, 101244, Nigeria",
+"Lekki Phase 1, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4335621,3.4491265,way,481337673,school,"British International School Lagos, 1, Land Bridge Avenue, Maroko, Lekki Phase I, Eti Osa,","Lekki Phase 1 hit is a school inside Phase 1, used as a rough district point"
+"Ajah, Lagos","OpenStreetMap Nominatim, 2026-11-07",6.4694716,3.5623861,node,501483975,town,"Ajah, Eti Osa, Lagos, 101245, Nigeria",
+Orchid (M1 point; area of the user's stay),"configs/case.json (M1, 2026-09)",6.4317,3.5566,,,,,1.5 km east of OSM's Orchid Road midpoint; both are checked

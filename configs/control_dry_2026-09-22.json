@@ -1,0 +1,40 @@
+{
+  "case_id": "lagos-lekki-5km-control-dry-2026-09-22",
+  "notes": "M3 control test (created 2026-11-04). Same 5 km square and August reference as case_lekki5km.json, but the 'event' is 2026-09-22, a dry day with no flood reported to our knowledge (IMERG rain 48 h before pass: 2.7 mm). Purpose: how much 'change' appears without a reported flood. Not a flood case.",
+  "gee_collection": "COPERNICUS/S1_GRD",
+  "area": {
+    "name": "5 km square over central Lekki (Osapa to Orchid, lagoon edge to the north)",
+    "centre_lon": 3.54,
+    "centre_lat": 6.445,
+    "half_size_m": 2500
+  },
+  "satellite": {
+    "platform_number": "D",
+    "instrument_mode": "IW",
+    "orbit_pass": "DESCENDING",
+    "relative_orbit": 95,
+    "bands": [
+      "VV",
+      "VH"
+    ]
+  },
+  "dates": {
+    "event": {
+      "start": "2026-09-22",
+      "end": "2026-09-23",
+      "label": "control: dry day, no reported flood"
+    },
+    "reference": {
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "label": "dry reference (August median)",
+      "combine": "median"
+    }
+  },
+  "output": {
+    "folder": "outputs/aligned",
+    "crs": "EPSG:32631",
+    "pixel_size_m": 10,
+    "nodata": -9999
+  }
+}

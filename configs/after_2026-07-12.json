@@ -1,0 +1,40 @@
+{
+  "case_id": "lagos-lekki-5km-after-2026-07-12",
+  "notes": "M3 persistence check (created 2026-11-07; the user's idea). Same 5 km square and August reference; 'event' = 12 Jul 2026, the next S1D lane-95 pass after the flood (12 days later). Question: do flood-day 'land got louder' pixels stay louder? News: further rain 3 Jul, drains full for hours (EVENT_EVIDENCE_2026.md).",
+  "gee_collection": "COPERNICUS/S1_GRD",
+  "area": {
+    "name": "5 km square over central Lekki (Osapa to Orchid, lagoon edge to the north)",
+    "centre_lon": 3.54,
+    "centre_lat": 6.445,
+    "half_size_m": 2500
+  },
+  "satellite": {
+    "platform_number": "D",
+    "instrument_mode": "IW",
+    "orbit_pass": "DESCENDING",
+    "relative_orbit": 95,
+    "bands": [
+      "VV",
+      "VH"
+    ]
+  },
+  "dates": {
+    "event": {
+      "start": "2026-07-12",
+      "end": "2026-07-13",
+      "label": "12 days after the flood"
+    },
+    "reference": {
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "label": "dry reference (August median)",
+      "combine": "median"
+    }
+  },
+  "output": {
+    "folder": "outputs/aligned",
+    "crs": "EPSG:32631",
+    "pixel_size_m": 10,
+    "nodata": -9999
+  }
+}

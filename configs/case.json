@@ -1,0 +1,33 @@
+{
+  "case_id": "lagos-lekki-orchid-2026-06-30",
+  "notes": "M2 settings card (created 2026-10-01). One flood case: WHERE, WHEN, WHICH satellite and HOW to save. Decisions: S11 (case), S17 (Sentinel-1D only, after-flood reference), S19 (option A).",
+
+  "gee_collection": "COPERNICUS/S1_GRD",
+
+  "area": {
+    "name": "1 km square around Orchid Road, Lekki",
+    "centre_lon": 3.5566,
+    "centre_lat": 6.4317,
+    "half_size_m": 500
+  },
+
+  "satellite": {
+    "platform_number": "D",
+    "instrument_mode": "IW",
+    "orbit_pass": "DESCENDING",
+    "relative_orbit": 95,
+    "bands": ["VV", "VH"]
+  },
+
+  "dates": {
+    "event":     { "start": "2026-06-30", "end": "2026-07-01", "label": "flood day (06:29 WAT pass)" },
+    "reference": { "start": "2026-08-01", "end": "2026-09-01", "label": "dry reference (August median)", "combine": "median" }
+  },
+
+  "output": {
+    "folder": "outputs/aligned",
+    "crs": "EPSG:32631",
+    "pixel_size_m": 10,
+    "nodata": -9999
+  }
+}

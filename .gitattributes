@@ -1,0 +1,2 @@
+# Keep Unix line endings everywhere so evidence file hashes (PACK_MANIFEST.json) stay valid on Windows.
+* text=auto eol=lf

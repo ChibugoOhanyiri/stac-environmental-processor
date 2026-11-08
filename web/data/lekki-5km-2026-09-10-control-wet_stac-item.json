@@ -1,0 +1,217 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json"
+  ],
+  "id": "lekki-5km-2026-09-10-control-wet",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          3.51735021922372,
+          6.422380892388354
+        ],
+        [
+          3.562613651674692,
+          6.422380892388354
+        ],
+        [
+          3.562613651674692,
+          6.467657560664868
+        ],
+        [
+          3.51735021922372,
+          6.467657560664868
+        ],
+        [
+          3.51735021922372,
+          6.422380892388354
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    3.51735021922372,
+    6.422380892388354,
+    3.562613651674692,
+    6.467657560664868
+  ],
+  "properties": {
+    "title": "Lekki 5 km: control (wet), 10 Sep 2026",
+    "description": "Control: equally rainy day with no reported flood vs August median.",
+    "platform": "sentinel-1d",
+    "constellation": "sentinel-1",
+    "instruments": [
+      "c-sar"
+    ],
+    "lekki:role": "control (wet)",
+    "lekki:claim": "Measured surface change consistent with the reported flood (PRD level 2). Not a validated flood-extent map; see evaluation/ASSESSMENT.md.",
+    "lekki:reference_window": {
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "label": "dry reference (August median)",
+      "combine": "median"
+    },
+    "lekki:input_image_ids": {
+      "event": [
+        "S1D_IW_GRDH_1SDV_20260910T052920_20260910T052950_004511_00861C_F006"
+      ],
+      "reference": [
+        "S1D_IW_GRDH_1SDV_20260805T052919_20260805T052948_003986_0073D1_3B57",
+        "S1D_IW_GRDH_1SDV_20260817T052919_20260817T052949_004161_0079D5_BF6F",
+        "S1D_IW_GRDH_1SDV_20260829T052920_20260829T052949_004336_008000_1C06"
+      ]
+    },
+    "lekki:rules": {
+      "smooth_px": 5,
+      "change_db": 3.5,
+      "water_db": -17.0,
+      "persistent_pct": 50,
+      "how_chosen": "2026-11-06, practice (west) side + wet/dry controls only (S26). change_db = smallest 0.5 dB step where both controls give <=1% false 'louder' on practice land (3.5 dB: wet 0.96%, dry 0.55%). water_db = first whole dB where <=1% of practice land is below it in the smoothed August reference (-17 dB: 0.7% land; catches only 33% of JRC always-water pixels, so the dark-water label is weak here)."
+    },
+    "lekki:label_pixel_counts": {
+      "no change": 238294,
+      "always water": 9019,
+      "new dark water": 8,
+      "land got louder": 1903,
+      "can't tell": 776,
+      "not observed": 0
+    },
+    "lekki:pixel_area_m2": 100.0,
+    "lekki:run_id": "20261104T115934Z_lagos-lekki-5km-control-wet-2026-09-10",
+    "lekki:code_commit": "4bd9174",
+    "sar:instrument_mode": "IW",
+    "sar:frequency_band": "C",
+    "sar:polarizations": [
+      "VV",
+      "VH"
+    ],
+    "sar:product_type": "GRD",
+    "sat:orbit_state": "descending",
+    "sat:relative_orbit": 95,
+    "proj:code": "EPSG:32631",
+    "proj:shape": [
+      500,
+      500
+    ],
+    "proj:transform": [
+      10.0,
+      0.0,
+      557210.0,
+      0.0,
+      -10.0,
+      714930.0
+    ],
+    "datetime": "2026-09-10T05:29:20Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Lekki 5 km radar change, Lagos flood of 30 June 2026"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Lekki 5 km radar change, Lagos flood of 30 June 2026"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Lekki 5 km radar change, Lagos flood of 30 June 2026"
+    }
+  ],
+  "assets": {
+    "labels": {
+      "href": "./labels.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "M3 pixel labels",
+      "description": "uint8 classes (255 = not observed). Rules in lekki:rules.",
+      "classification:classes": [
+        {
+          "value": 0,
+          "name": "no_change",
+          "description": "no change",
+          "color_hint": "ebebeb",
+          "nodata": false
+        },
+        {
+          "value": 1,
+          "name": "always_water",
+          "description": "always water",
+          "color_hint": "285ac8",
+          "nodata": false
+        },
+        {
+          "value": 2,
+          "name": "new_dark_water",
+          "description": "new dark water",
+          "color_hint": "00c8dc",
+          "nodata": false
+        },
+        {
+          "value": 3,
+          "name": "land_got_louder",
+          "description": "land got louder",
+          "color_hint": "dc2828",
+          "nodata": false
+        },
+        {
+          "value": 4,
+          "name": "cant_tell",
+          "description": "can't tell",
+          "color_hint": "fabe00",
+          "nodata": false
+        },
+        {
+          "value": 255,
+          "name": "not_observed",
+          "description": "not observed",
+          "color_hint": "000000",
+          "nodata": true
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "event_backscatter": {
+      "href": "../../outputs/cog/lagos-lekki-5km-control-wet-2026-09-10_event.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Event backscatter VV/VH (dB)",
+      "description": "LOCAL ONLY (git-ignored). Rebuild: src/preprocess.py then src/catalog.py.",
+      "roles": [
+        "data",
+        "local-only"
+      ]
+    },
+    "reference_backscatter": {
+      "href": "../../outputs/cog/lagos-lekki-5km-control-wet-2026-09-10_reference.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Reference backscatter VV/VH (dB), median",
+      "description": "LOCAL ONLY (git-ignored). Rebuild: src/preprocess.py then src/catalog.py.",
+      "roles": [
+        "data",
+        "local-only"
+      ]
+    },
+    "receipt": {
+      "href": "../../evidence/runs/run-manifest_20261104T115934Z_lagos-lekki-5km-control-wet-2026-09-10.json",
+      "type": "application/json",
+      "title": "Run receipt",
+      "description": "Image IDs, settings, versions, SHA-256, Earth Engine process graph.",
+      "roles": [
+        "metadata"
+      ]
+    }
+  },
+  "collection": "lekki-5km-flood-change-2026"
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lekki Flood Radar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root { --bg:#ffffff; --fg:#1c1c1c; --muted:#5f6368; --line:#d9d9d9; --panel:#f6f6f4; --accent:#b3261e; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#151515; --fg:#ececec; --muted:#a8a8a8; --line:#3a3a3a; --panel:#1f1f1f; --accent:#ff8a80; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { padding:16px; border-bottom:1px solid var(--line); }
+  h1 { margin:0 0 6px; font-size:1.3rem; }
+  .claim { margin:0; color:var(--muted); max-width:70ch; }
+  .claim strong { color:var(--fg); }
+  main { display:grid; grid-template-columns: minmax(0,1fr) 360px; min-height: calc(100vh - 120px); }
+  #map { min-height:70vh; }
+  aside { border-left:1px solid var(--line); padding:16px; background:var(--panel); overflow:auto; }
+  h2 { font-size:.95rem; margin:18px 0 8px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  h2:first-child { margin-top:0; }
+  .layers label { display:block; padding:6px 8px; border:1px solid var(--line); border-radius:6px; margin-bottom:6px; cursor:pointer; }
+  .layers input { margin-right:8px; }
+  .layers .role { color:var(--muted); font-size:.85rem; }
+  .legend div { display:flex; align-items:center; gap:8px; margin:3px 0; }
+  .sw { width:14px; height:14px; border-radius:3px; border:1px solid var(--line); flex:none; }
+  .num { margin-left:auto; font-variant-numeric: tabular-nums; color:var(--muted); font-size:.9rem; }
+  dl { margin:0; display:grid; grid-template-columns: 9.5em 1fr; gap:4px 8px; font-size:.9rem; }
+  dt { color:var(--muted); } dd { margin:0; word-break:break-word; }
+  a { color:var(--accent); }
+  .row { display:flex; gap:8px; align-items:center; margin:6px 0; }
+  footer { padding:12px 16px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
+  @media (max-width: 820px) {
+    main { grid-template-columns: 1fr; }
+    aside { border-left:0; border-top:1px solid var(--line); }
+    #map { min-height:55vh; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lekki flood radar, 30 June 2026</h1>
+  <p class="claim"><strong>Measured surface change consistent with the reported flood.</strong>
+    Not a validated flood map: red shows where the radar echo got much louder than in August, which fits water in
+    built-up streets but has other possible causes. Compare the flood day with the two control days.</p>
+</header>
+<main>
+  <div id="map" role="region" aria-label="Map of the 5 km Lekki square"></div>
+  <aside>
+    <h2>Date to show</h2>
+    <div class="layers" id="layers"></div>
+    <div class="row"><label for="opacity">Opacity</label><input id="opacity" type="range" min="0" max="1" step="0.05" value="0.85"></div>
+    <div class="row"><input id="places" type="checkbox" checked><label for="places">Places named in flood reports</label></div>
+
+    <h2>Legend (share of the 5 km square)</h2>
+    <div class="legend" id="legend"></div>
+
+    <h2>This layer</h2>
+    <dl id="meta"></dl>
+
+    <h2>Download the evidence</h2>
+    <div id="downloads"></div>
+  </aside>
+</main>
+<footer id="footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data/items.js"></script>
+<script>
+const LEGEND = [
+  ["land got louder", "#dc2828", "Radar echo much louder than August (fits water in streets)"],
+  ["always water", "#285ac8", "Normally water (JRC map); changes here are wind"],
+  ["new dark water", "#00c8dc", "New open water (dark echo)"],
+  ["can't tell", "#fabe00", "Changed, but on sometimes-wet ground or in an unclear way"],
+  ["not observed", "#000000", "Satellite did not see this pixel"],
+  ["no change", "transparent", "No change beyond normal radar grain (see-through)"],
+];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtDate = iso => new Date(iso).toUTCString().replace(" GMT", " UTC").replace(/^\w+, /, "");
+
+const map = L.map("map", { zoomControl: true });
+// Basemaps that allow use from any page (OpenStreetMap's own tile servers block pages opened from a file; CARTO now needs a key).
+const streets = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 19, attribution: "Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"
+}).addTo(map);
+const satellite = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 19, attribution: "Imagery &copy; Esri, Maxar, Earthstar Geographics (not the 2026 flood)"
+});
+L.control.layers({ "Street map": streets, "Satellite photo (not flood day)": satellite }, null, { position: "topright" }).addTo(map);
+
+const first = window.ITEMS[0];
+const [w, s, e, n] = first.bbox;
+const bounds = [[s, w], [n, e]];
+L.rectangle(bounds, { color: "#333", weight: 1, dashArray: "4 4", fill: false }).addTo(map);
+map.fitBounds(bounds, { padding: [10, 10] });
+
+const placeLayer = L.layerGroup(window.PLACES.map(p =>
+  L.circleMarker([p.lat, p.lon], { radius: 6, color: "#111", weight: 2, fillColor: "#fff", fillOpacity: 1 })
+    .bindTooltip(esc(p.name.replace(", Lagos", "").replace(", Lekki", "")))
+)).addTo(map);
+document.getElementById("places").addEventListener("change", ev =>
+  ev.target.checked ? placeLayer.addTo(map) : map.removeLayer(placeLayer));
+
+let overlay = null;
+const opacity = document.getElementById("opacity");
+opacity.addEventListener("input", () => overlay && overlay.setOpacity(+opacity.value));
+
+function show(item) {
+  if (overlay) map.removeLayer(overlay);
+  overlay = L.imageOverlay(item.png, [[item.bbox[1], item.bbox[0]], [item.bbox[3], item.bbox[2]]],
+                           { opacity: +opacity.value, className: "pixelated" }).addTo(map);
+  overlay.getElement().style.imageRendering = "pixelated";
+  document.getElementById("legend").innerHTML = LEGEND.map(([k, c, d]) =>
+    `<div title="${esc(d)}"><span class="sw" style="background:${c}"></span>${esc(k)}
+     <span class="num">${item.pct[k].toFixed(2)}% · ${item.km2[k].toFixed(2)} km²</span></div>`).join("");
+  const ref = item.reference;
+  document.getElementById("meta").innerHTML = `
+    <dt>Satellite pass</dt><dd>${esc(fmtDate(item.datetime))} (Sentinel-1, ${esc(item.images.event.length)} scene)</dd>
+    <dt>Compared with</dt><dd>${esc(ref.label)}: ${esc(ref.start)} to ${esc(ref.end)} (${esc(item.images.reference.length)} scenes)</dd>
+    <dt>What this is</dt><dd>${esc(item.description)}</dd>
+    <dt>Seen by satellite</dt><dd>${item.observed_pct}% of pixels</dd>
+    <dt>Rules</dt><dd>${esc(item.rules.smooth_px)}×${esc(item.rules.smooth_px)} px smoothing (10 m px), change &gt; ${esc(item.rules.change_db)} dB,
+        dark water &lt; ${esc(item.rules.water_db)} dB, always water = JRC &gt; ${esc(item.rules.persistent_pct)}%</dd>
+    <dt>Run / code</dt><dd>${esc(item.run_id)} / ${esc(item.commit)}</dd>`;
+  document.getElementById("downloads").innerHTML = `
+    <div><a href="${esc(item.cog)}" download>Label map (Cloud-Optimised GeoTIFF)</a></div>
+    <div><a href="${esc(item.stac)}" download>STAC Item (catalogue card)</a></div>
+    <div><a href="${esc(item.receipt)}" download>Run receipt (image IDs, versions, hashes)</a></div>`;
+}
+
+document.getElementById("layers").innerHTML = window.ITEMS.map((it, i) => `
+  <label><input type="radio" name="layer" value="${i}" ${it.role === "flood day" ? "checked" : ""}>
+  ${esc(fmtDate(it.datetime).slice(0, 11))} <span class="role">· ${esc(it.role)} · ${it.pct["land got louder"].toFixed(1)}% louder</span></label>`).join("");
+document.querySelectorAll('input[name="layer"]').forEach(r =>
+  r.addEventListener("change", () => show(window.ITEMS[+r.value])));
+show(window.ITEMS.find(it => it.role === "flood day"));
+
+document.getElementById("footer").innerHTML =
+  `Precomputed results; nothing is processed in your browser. ${esc(window.ATTRIBUTION)} Place positions
+   &copy; OpenStreetMap contributors (ODbL); street and satellite basemaps &copy; Esri (a recent
+   photo, not the flood day). Overlays are placed by their latitude/longitude corners (≈0.06° grid
+   rotation from UTM ignored at this scale). Method and limits: evaluation/ASSESSMENT.md in the project repository.`;
+</script>
+</body>
+</html>

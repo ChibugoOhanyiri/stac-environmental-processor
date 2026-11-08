@@ -1,0 +1,41 @@
+{
+  "case_id": "lagos-lekki-5km-dryseason-ref-dry-2026-09-22",
+  "notes": "M3 'is August the odd one out?' test (created 2026-11-07). Event = S1D 2026-09-22 (dry control); reference = Sentinel-1A dry-season median, 6, 18 and 30 Jan 2026 (11 Feb excluded: 108 mm rain), same lane 95 descending. A twin-satellite offset (S12) affects the flood and the control run equally, so compare the two runs, not absolute values.",
+  "gee_collection": "COPERNICUS/S1_GRD",
+  "area": {
+    "name": "5 km square over central Lekki (Osapa to Orchid, lagoon edge to the north)",
+    "centre_lon": 3.54,
+    "centre_lat": 6.445,
+    "half_size_m": 2500
+  },
+  "satellite": {
+    "platform_number": "D",
+    "instrument_mode": "IW",
+    "orbit_pass": "DESCENDING",
+    "relative_orbit": 95,
+    "bands": [
+      "VV",
+      "VH"
+    ]
+  },
+  "dates": {
+    "event": {
+      "start": "2026-09-22",
+      "end": "2026-09-23",
+      "label": "dry control"
+    },
+    "reference": {
+      "start": "2026-01-06",
+      "end": "2026-02-01",
+      "label": "dry-season reference (S1A median of 6, 18, 30 Jan 2026; IMERG <=0.1 mm in 48 h before each)",
+      "combine": "median",
+      "platform_number": "A"
+    }
+  },
+  "output": {
+    "folder": "outputs/aligned",
+    "crs": "EPSG:32631",
+    "pixel_size_m": 10,
+    "nodata": -9999
+  }
+}

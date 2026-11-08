@@ -1,0 +1,40 @@
+{
+  "created": "2026-11-07",
+  "case": "lagos-lekki-5km-2026-06-30",
+  "claim_level": "PRD level 2: measured surface change consistent with the reported flood",
+  "accuracy_metrics": null,
+  "accuracy_metrics_reason": "no reference gives a flood boundary at the pass time (evaluation/ASSESSMENT.md)",
+  "main_rules": {
+    "window_px": 5,
+    "change_db": 3.5,
+    "water_db": -17.0,
+    "persistent_jrc_pct": 50
+  },
+  "land_louder_pct_by_area_and_date": {
+    "practice (west) | 30 Jun flood": 7.52,
+    "test (east) | 30 Jun flood": 9.39,
+    "practice (west) | 10 Sep wet control": 0.78,
+    "test (east) | 10 Sep wet control": 0.73,
+    "practice (west) | 22 Sep dry control": 0.45,
+    "test (east) | 22 Sep dry control": 0.79
+  },
+  "sensitivity_test_side": {
+    "flood_land_louder_pct_range": [
+      5.32,
+      17.36
+    ],
+    "flood_to_worst_control_ratio_range": [
+      6.0,
+      14.8
+    ]
+  },
+  "persistence_12jul_test_side": {
+    "repeat_pct": 42.6,
+    "chance_pct": 9.2
+  },
+  "dry_season_reference_test_side": {
+    "flood_pct": 17.21,
+    "dry_control_pct": 2.44,
+    "overlap_with_august_result_pct": 81.4
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "generated_at_utc": "2026-09-25T20:35:33.224912+00:00",
+  "source": {
+    "mode": "live",
+    "endpoint": "https://stac.dataspace.copernicus.eu/v1",
+    "bbox": [
+      3.25,
+      6.4,
+      3.65,
+      6.7
+    ],
+    "interval": "2024-06-20T00:00:00Z/2024-07-15T23:59:59Z"
+  },
+  "count": 4,
+  "items": [
+    {
+      "id": "S1A_IW_GRDH_1SDV_20240715T053017_20240715T053046_054767_06AB2E_1FD1_COG",
+      "collection": "sentinel-1-grd",
+      "datetime_utc": "2024-07-15T05:30:17.448459Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 95,
+      "polarizations": [
+        "VV",
+        "VH"
+      ],
+      "tile_cloud_percent": null,
+      "bbox": [
+        2.792304,
+        4.960706,
+        5.378243,
+        7.172138
+      ]
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20240703T053017_20240703T053046_054592_06A521_BC59_COG",
+      "collection": "sentinel-1-grd",
+      "datetime_utc": "2024-07-03T05:30:17.566088Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 95,
+      "polarizations": [
+        "VV",
+        "VH"
+      ],
+      "tile_cloud_percent": null,
+      "bbox": [
+        2.794012,
+        4.960677,
+        5.380199,
+        7.172555
+      ]
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20240626T180210_20240626T180235_054498_06A1D2_3AD3_COG",
+      "collection": "sentinel-1-grd",
+      "datetime_utc": "2024-06-26T18:02:10.270216Z",
+      "orbit_direction": "ascending",
+      "relative_orbit": 1,
+      "polarizations": [
+        "VV",
+        "VH"
+      ],
+      "tile_cloud_percent": null,
+      "bbox": [
+        2.064829,
+        5.527295,
+        4.605695,
+        7.495696
+      ]
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20240621T053018_20240621T053047_054417_069F0A_DD9B_COG",
+      "collection": "sentinel-1-grd",
+      "datetime_utc": "2024-06-21T05:30:18.437523Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 95,
+      "polarizations": [
+        "VV",
+        "VH"
+      ],
+      "tile_cloud_percent": null,
+      "bbox": [
+        2.792449,
+        4.960668,
+        5.37863,
+        7.17219
+      ]
+    }
+  ],
+  "limitation": "Metadata only. No pixels processed; event suitability is unverified."
+}

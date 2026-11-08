@@ -1,0 +1,666 @@
+{
+  "run_id": "20261104T115934Z_lagos-lekki-5km-control-wet-2026-09-10",
+  "started_utc": "2026-11-04T11:59:34.466368+00:00",
+  "dry_run": false,
+  "settings_card": {
+    "case_id": "lagos-lekki-5km-control-wet-2026-09-10",
+    "notes": "M3 control test (created 2026-11-04). Same 5 km square and August reference as case_lekki5km.json, but the 'event' is 2026-09-10, a wet day with no flood reported to our knowledge (IMERG rain 48 h before pass: 49.4 mm). Purpose: how much 'change' appears without a reported flood. Not a flood case.",
+    "gee_collection": "COPERNICUS/S1_GRD",
+    "area": {
+      "name": "5 km square over central Lekki (Osapa to Orchid, lagoon edge to the north)",
+      "centre_lon": 3.54,
+      "centre_lat": 6.445,
+      "half_size_m": 2500
+    },
+    "satellite": {
+      "platform_number": "D",
+      "instrument_mode": "IW",
+      "orbit_pass": "DESCENDING",
+      "relative_orbit": 95,
+      "bands": [
+        "VV",
+        "VH"
+      ]
+    },
+    "dates": {
+      "event": {
+        "start": "2026-09-10",
+        "end": "2026-09-11",
+        "label": "control: wet day, no reported flood"
+      },
+      "reference": {
+        "start": "2026-08-01",
+        "end": "2026-09-01",
+        "label": "dry reference (August median)",
+        "combine": "median"
+      }
+    },
+    "output": {
+      "folder": "outputs/aligned",
+      "crs": "EPSG:32631",
+      "pixel_size_m": 10,
+      "nodata": -9999
+    }
+  },
+  "grid": {
+    "x0": 557210,
+    "y0": 714930,
+    "width": 500,
+    "height": 500,
+    "pixel_m": 10,
+    "crs": "EPSG:32631"
+  },
+  "versions": {
+    "python": "3.13.16",
+    "earthengine_api": "1.7.46",
+    "rasterio": "1.5.2",
+    "gdal": "3.12.2",
+    "numpy": "2.5.3",
+    "git_commit": "4bd9174",
+    "git_uncommitted_changes": false
+  },
+  "inputs": {
+    "event": {
+      "window": {
+        "start": "2026-09-10",
+        "end": "2026-09-11",
+        "label": "control: wet day, no reported flood"
+      },
+      "gee_image_ids": [
+        "S1D_IW_GRDH_1SDV_20260910T052920_20260910T052950_004511_00861C_F006"
+      ],
+      "process_graph": {
+        "result": "0",
+        "values": {
+          "1": {
+            "constantValue": "VV"
+          },
+          "2": {
+            "constantValue": "VH"
+          },
+          "3": {
+            "constantValue": "transmitterReceiverPolarisation"
+          },
+          "0": {
+            "functionInvocationValue": {
+              "functionName": "Image.unmask",
+              "arguments": {
+                "input": {
+                  "functionInvocationValue": {
+                    "functionName": "Image.toFloat",
+                    "arguments": {
+                      "value": {
+                        "functionInvocationValue": {
+                          "functionName": "Image.select",
+                          "arguments": {
+                            "bandSelectors": {
+                              "arrayValue": {
+                                "values": [
+                                  {
+                                    "valueReference": "1"
+                                  },
+                                  {
+                                    "valueReference": "2"
+                                  }
+                                ]
+                              }
+                            },
+                            "input": {
+                              "functionInvocationValue": {
+                                "functionName": "ImageCollection.mosaic",
+                                "arguments": {
+                                  "collection": {
+                                    "functionInvocationValue": {
+                                      "functionName": "Collection.filter",
+                                      "arguments": {
+                                        "collection": {
+                                          "functionInvocationValue": {
+                                            "functionName": "Collection.filter",
+                                            "arguments": {
+                                              "collection": {
+                                                "functionInvocationValue": {
+                                                  "functionName": "Collection.filter",
+                                                  "arguments": {
+                                                    "collection": {
+                                                      "functionInvocationValue": {
+                                                        "functionName": "Collection.filter",
+                                                        "arguments": {
+                                                          "collection": {
+                                                            "functionInvocationValue": {
+                                                              "functionName": "Collection.filter",
+                                                              "arguments": {
+                                                                "collection": {
+                                                                  "functionInvocationValue": {
+                                                                    "functionName": "Collection.filter",
+                                                                    "arguments": {
+                                                                      "collection": {
+                                                                        "functionInvocationValue": {
+                                                                          "functionName": "Collection.filter",
+                                                                          "arguments": {
+                                                                            "collection": {
+                                                                              "functionInvocationValue": {
+                                                                                "functionName": "Collection.filter",
+                                                                                "arguments": {
+                                                                                  "collection": {
+                                                                                    "functionInvocationValue": {
+                                                                                      "functionName": "ImageCollection.load",
+                                                                                      "arguments": {
+                                                                                        "id": {
+                                                                                          "constantValue": "COPERNICUS/S1_GRD"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "filter": {
+                                                                                    "functionInvocationValue": {
+                                                                                      "functionName": "Filter.intersects",
+                                                                                      "arguments": {
+                                                                                        "leftField": {
+                                                                                          "constantValue": ".all"
+                                                                                        },
+                                                                                        "rightValue": {
+                                                                                          "functionInvocationValue": {
+                                                                                            "functionName": "Feature",
+                                                                                            "arguments": {
+                                                                                              "geometry": {
+                                                                                                "functionInvocationValue": {
+                                                                                                  "functionName": "GeometryConstructors.Rectangle",
+                                                                                                  "arguments": {
+                                                                                                    "coordinates": {
+                                                                                                      "constantValue": [
+                                                                                                        557210,
+                                                                                                        709930,
+                                                                                                        562210,
+                                                                                                        714930
+                                                                                                      ]
+                                                                                                    },
+                                                                                                    "crs": {
+                                                                                                      "functionInvocationValue": {
+                                                                                                        "functionName": "Projection",
+                                                                                                        "arguments": {
+                                                                                                          "crs": {
+                                                                                                            "constantValue": "EPSG:32631"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "geodesic": {
+                                                                                                      "constantValue": false
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "filter": {
+                                                                              "functionInvocationValue": {
+                                                                                "functionName": "Filter.dateRangeContains",
+                                                                                "arguments": {
+                                                                                  "leftValue": {
+                                                                                    "functionInvocationValue": {
+                                                                                      "functionName": "DateRange",
+                                                                                      "arguments": {
+                                                                                        "end": {
+                                                                                          "constantValue": "2026-09-11"
+                                                                                        },
+                                                                                        "start": {
+                                                                                          "constantValue": "2026-09-10"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "rightField": {
+                                                                                    "constantValue": "system:time_start"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "filter": {
+                                                                        "functionInvocationValue": {
+                                                                          "functionName": "Filter.equals",
+                                                                          "arguments": {
+                                                                            "leftField": {
+                                                                              "constantValue": "platform_number"
+                                                                            },
+                                                                            "rightValue": {
+                                                                              "constantValue": "D"
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "filter": {
+                                                                  "functionInvocationValue": {
+                                                                    "functionName": "Filter.equals",
+                                                                    "arguments": {
+                                                                      "leftField": {
+                                                                        "constantValue": "instrumentMode"
+                                                                      },
+                                                                      "rightValue": {
+                                                                        "constantValue": "IW"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "filter": {
+                                                            "functionInvocationValue": {
+                                                              "functionName": "Filter.equals",
+                                                              "arguments": {
+                                                                "leftField": {
+                                                                  "constantValue": "orbitProperties_pass"
+                                                                },
+                                                                "rightValue": {
+                                                                  "constantValue": "DESCENDING"
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "filter": {
+                                                      "functionInvocationValue": {
+                                                        "functionName": "Filter.equals",
+                                                        "arguments": {
+                                                          "leftField": {
+                                                            "constantValue": "relativeOrbitNumber_start"
+                                                          },
+                                                          "rightValue": {
+                                                            "constantValue": 95
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "filter": {
+                                                "functionInvocationValue": {
+                                                  "functionName": "Filter.listContains",
+                                                  "arguments": {
+                                                    "leftField": {
+                                                      "valueReference": "3"
+                                                    },
+                                                    "rightValue": {
+                                                      "valueReference": "1"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "filter": {
+                                          "functionInvocationValue": {
+                                            "functionName": "Filter.listContains",
+                                            "arguments": {
+                                              "leftField": {
+                                                "valueReference": "3"
+                                              },
+                                              "rightValue": {
+                                                "valueReference": "2"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "value": {
+                  "functionInvocationValue": {
+                    "functionName": "Image.constant",
+                    "arguments": {
+                      "value": {
+                        "constantValue": -9999
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "window": {
+        "start": "2026-08-01",
+        "end": "2026-09-01",
+        "label": "dry reference (August median)",
+        "combine": "median"
+      },
+      "gee_image_ids": [
+        "S1D_IW_GRDH_1SDV_20260805T052919_20260805T052948_003986_0073D1_3B57",
+        "S1D_IW_GRDH_1SDV_20260817T052919_20260817T052949_004161_0079D5_BF6F",
+        "S1D_IW_GRDH_1SDV_20260829T052920_20260829T052949_004336_008000_1C06"
+      ],
+      "process_graph": {
+        "result": "0",
+        "values": {
+          "1": {
+            "constantValue": "VV"
+          },
+          "2": {
+            "constantValue": "VH"
+          },
+          "3": {
+            "constantValue": "transmitterReceiverPolarisation"
+          },
+          "0": {
+            "functionInvocationValue": {
+              "functionName": "Image.unmask",
+              "arguments": {
+                "input": {
+                  "functionInvocationValue": {
+                    "functionName": "Image.toFloat",
+                    "arguments": {
+                      "value": {
+                        "functionInvocationValue": {
+                          "functionName": "Image.select",
+                          "arguments": {
+                            "bandSelectors": {
+                              "arrayValue": {
+                                "values": [
+                                  {
+                                    "valueReference": "1"
+                                  },
+                                  {
+                                    "valueReference": "2"
+                                  }
+                                ]
+                              }
+                            },
+                            "input": {
+                              "functionInvocationValue": {
+                                "functionName": "reduce.median",
+                                "arguments": {
+                                  "collection": {
+                                    "functionInvocationValue": {
+                                      "functionName": "Collection.filter",
+                                      "arguments": {
+                                        "collection": {
+                                          "functionInvocationValue": {
+                                            "functionName": "Collection.filter",
+                                            "arguments": {
+                                              "collection": {
+                                                "functionInvocationValue": {
+                                                  "functionName": "Collection.filter",
+                                                  "arguments": {
+                                                    "collection": {
+                                                      "functionInvocationValue": {
+                                                        "functionName": "Collection.filter",
+                                                        "arguments": {
+                                                          "collection": {
+                                                            "functionInvocationValue": {
+                                                              "functionName": "Collection.filter",
+                                                              "arguments": {
+                                                                "collection": {
+                                                                  "functionInvocationValue": {
+                                                                    "functionName": "Collection.filter",
+                                                                    "arguments": {
+                                                                      "collection": {
+                                                                        "functionInvocationValue": {
+                                                                          "functionName": "Collection.filter",
+                                                                          "arguments": {
+                                                                            "collection": {
+                                                                              "functionInvocationValue": {
+                                                                                "functionName": "Collection.filter",
+                                                                                "arguments": {
+                                                                                  "collection": {
+                                                                                    "functionInvocationValue": {
+                                                                                      "functionName": "ImageCollection.load",
+                                                                                      "arguments": {
+                                                                                        "id": {
+                                                                                          "constantValue": "COPERNICUS/S1_GRD"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "filter": {
+                                                                                    "functionInvocationValue": {
+                                                                                      "functionName": "Filter.intersects",
+                                                                                      "arguments": {
+                                                                                        "leftField": {
+                                                                                          "constantValue": ".all"
+                                                                                        },
+                                                                                        "rightValue": {
+                                                                                          "functionInvocationValue": {
+                                                                                            "functionName": "Feature",
+                                                                                            "arguments": {
+                                                                                              "geometry": {
+                                                                                                "functionInvocationValue": {
+                                                                                                  "functionName": "GeometryConstructors.Rectangle",
+                                                                                                  "arguments": {
+                                                                                                    "coordinates": {
+                                                                                                      "constantValue": [
+                                                                                                        557210,
+                                                                                                        709930,
+                                                                                                        562210,
+                                                                                                        714930
+                                                                                                      ]
+                                                                                                    },
+                                                                                                    "crs": {
+                                                                                                      "functionInvocationValue": {
+                                                                                                        "functionName": "Projection",
+                                                                                                        "arguments": {
+                                                                                                          "crs": {
+                                                                                                            "constantValue": "EPSG:32631"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "geodesic": {
+                                                                                                      "constantValue": false
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "filter": {
+                                                                              "functionInvocationValue": {
+                                                                                "functionName": "Filter.dateRangeContains",
+                                                                                "arguments": {
+                                                                                  "leftValue": {
+                                                                                    "functionInvocationValue": {
+                                                                                      "functionName": "DateRange",
+                                                                                      "arguments": {
+                                                                                        "end": {
+                                                                                          "constantValue": "2026-09-01"
+                                                                                        },
+                                                                                        "start": {
+                                                                                          "constantValue": "2026-08-01"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "rightField": {
+                                                                                    "constantValue": "system:time_start"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "filter": {
+                                                                        "functionInvocationValue": {
+                                                                          "functionName": "Filter.equals",
+                                                                          "arguments": {
+                                                                            "leftField": {
+                                                                              "constantValue": "platform_number"
+                                                                            },
+                                                                            "rightValue": {
+                                                                              "constantValue": "D"
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "filter": {
+                                                                  "functionInvocationValue": {
+                                                                    "functionName": "Filter.equals",
+                                                                    "arguments": {
+                                                                      "leftField": {
+                                                                        "constantValue": "instrumentMode"
+                                                                      },
+                                                                      "rightValue": {
+                                                                        "constantValue": "IW"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "filter": {
+                                                            "functionInvocationValue": {
+                                                              "functionName": "Filter.equals",
+                                                              "arguments": {
+                                                                "leftField": {
+                                                                  "constantValue": "orbitProperties_pass"
+                                                                },
+                                                                "rightValue": {
+                                                                  "constantValue": "DESCENDING"
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "filter": {
+                                                      "functionInvocationValue": {
+                                                        "functionName": "Filter.equals",
+                                                        "arguments": {
+                                                          "leftField": {
+                                                            "constantValue": "relativeOrbitNumber_start"
+                                                          },
+                                                          "rightValue": {
+                                                            "constantValue": 95
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "filter": {
+                                                "functionInvocationValue": {
+                                                  "functionName": "Filter.listContains",
+                                                  "arguments": {
+                                                    "leftField": {
+                                                      "valueReference": "3"
+                                                    },
+                                                    "rightValue": {
+                                                      "valueReference": "1"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "filter": {
+                                          "functionInvocationValue": {
+                                            "functionName": "Filter.listContains",
+                                            "arguments": {
+                                              "leftField": {
+                                                "valueReference": "3"
+                                              },
+                                              "rightValue": {
+                                                "valueReference": "2"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "value": {
+                  "functionInvocationValue": {
+                    "functionName": "Image.constant",
+                    "arguments": {
+                      "value": {
+                        "constantValue": -9999
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "outputs": [
+    {
+      "role": "event",
+      "bands": [
+        "VV_event",
+        "VH_event"
+      ],
+      "file": "outputs/aligned/lagos-lekki-5km-control-wet-2026-09-10_event.tif",
+      "sha256": "2b228104cbcfca483e93640fd4072b3a8dcb496a4c30ef2930857cfc5c9e37aa",
+      "valid_pixels": 250000,
+      "nodata_pixels": 0,
+      "first_band_median_db": -7.152
+    },
+    {
+      "role": "reference",
+      "bands": [
+        "VV_reference",
+        "VH_reference"
+      ],
+      "file": "outputs/aligned/lagos-lekki-5km-control-wet-2026-09-10_reference.tif",
+      "sha256": "f8fb4d0de8996a9f4a2c99233ae00607db355aa20d4c9502b2adc4e7eddf32b5",
+      "valid_pixels": 250000,
+      "nodata_pixels": 0,
+      "first_band_median_db": -7.506
+    }
+  ],
+  "finished_utc": "2026-11-04T12:03:07.997993+00:00"
+}

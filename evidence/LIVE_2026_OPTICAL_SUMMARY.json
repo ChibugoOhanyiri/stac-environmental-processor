@@ -1,0 +1,198 @@
+{
+  "generated_at_utc": "2026-09-27T17:31:40.489531+00:00",
+  "source": {
+    "mode": "live",
+    "endpoint": "https://stac.dataspace.copernicus.eu/v1",
+    "bbox": [
+      3.25,
+      6.4,
+      3.65,
+      6.7
+    ],
+    "interval": "2026-06-10T00:00:00Z/2026-07-20T23:59:59Z"
+  },
+  "count": 12,
+  "items": [
+    {
+      "id": "S2B_MSIL2A_20260718T100029_N0512_R122_T31NEH_20260718T152614",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-07-18T10:00:29.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 99.6,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2A_MSIL2A_20260715T101551_N0512_R122_T31NEH_20260715T180109",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-07-15T10:15:51.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 100.0,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2C_MSIL2A_20260713T100031_N0512_R122_T31NEH_20260713T153020",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-07-13T10:00:31.025000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 98.46,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2B_MSIL2A_20260708T100029_N0512_R122_T31NEH_20260708T142020",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-07-08T10:00:29.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 100.0,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2A_MSIL2A_20260705T100041_N0512_R122_T31NEH_20260705T181512",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-07-05T10:00:41.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 99.83,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2C_MSIL2A_20260703T100021_N0512_R122_T31NEH_20260703T142605",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-07-03T10:00:21.025000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 89.17,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2B_MSIL2A_20260628T100029_N0512_R122_T31NEH_20260628T142219",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-06-28T10:00:29.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 91.55,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2A_MSIL2A_20260625T101551_N0512_R122_T31NEH_20260625T180037",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-06-25T10:15:51.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 97.0,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2C_MSIL2A_20260623T100031_N0512_R122_T31NEH_20260623T145710",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-06-23T10:00:31.025000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 51.76,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2B_MSIL2A_20260618T100029_N0512_R122_T31NEH_20260618T142031",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-06-18T10:00:29.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 71.29,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2A_MSIL2A_20260615T100041_N0512_R122_T31NEH_20260615T181417",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-06-15T10:00:41.024000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 92.63,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    },
+    {
+      "id": "S2C_MSIL2A_20260613T100031_N0512_R122_T31NEH_20260613T151911",
+      "collection": "sentinel-2-l2a",
+      "datetime_utc": "2026-06-13T10:00:31.025000Z",
+      "orbit_direction": "descending",
+      "relative_orbit": 122,
+      "polarizations": null,
+      "tile_cloud_percent": 95.91,
+      "bbox": [
+        2.999818830996764,
+        6.243634699399232,
+        3.994385617464529,
+        7.23782745247485
+      ]
+    }
+  ],
+  "limitation": "Metadata only. No pixels processed; event suitability is unverified."
+}

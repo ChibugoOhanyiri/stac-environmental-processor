@@ -1,0 +1,61 @@
+{
+  "case_id": "lagos-lekki-5km-2026-06-30",
+  "notes": "M3 settings card (created 2026-11-04, decision S22). Same flood, satellite and dates as case.json, but a 5 km square so the method can be developed on one part and tested on another. Centre chosen so the box holds Orchid (inside, ~1 km from the east edge), the Chevron/Ikota/VGC/Osapa streets named in news reports, and the Lagos Lagoon edge (JRC GSW: ~15% always-water in the northern 1 km, ~3% in the whole box; checked 2026-11-04).",
+  "gee_collection": "COPERNICUS/S1_GRD",
+  "area": {
+    "name": "5 km square over central Lekki (Osapa to Orchid, lagoon edge to the north)",
+    "centre_lon": 3.54,
+    "centre_lat": 6.445,
+    "half_size_m": 2500
+  },
+  "satellite": {
+    "platform_number": "D",
+    "instrument_mode": "IW",
+    "orbit_pass": "DESCENDING",
+    "relative_orbit": 95,
+    "bands": [
+      "VV",
+      "VH"
+    ]
+  },
+  "dates": {
+    "event": {
+      "start": "2026-06-30",
+      "end": "2026-07-01",
+      "label": "flood day (06:29 WAT pass)"
+    },
+    "reference": {
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "label": "dry reference (August median)",
+      "combine": "median"
+    }
+  },
+  "output": {
+    "folder": "outputs/aligned",
+    "crs": "EPSG:32631",
+    "pixel_size_m": 10,
+    "nodata": -9999
+  },
+  "context": [
+    {
+      "name": "jrc_water_occurrence",
+      "gee_image": "JRC/GSW1_4/GlobalSurfaceWater",
+      "band": "occurrence",
+      "fill_masked": 0,
+      "meaning": "Percent of valid months 1984-2021 when Landsat saw water (0-100). JRC masks pixels never seen as water; filled with 0 = never water. Native 30 m, sampled onto our 10 m grid (nearest). Used for 'always water', not as an event label (DATA_AND_VALIDATION.md)."
+    }
+  ],
+  "split": {
+    "practice_side": "west",
+    "gap_m": 250,
+    "why": "Decided 2026-11-06 before looking at any flood result (S25). East = test because it holds Orchid and most news-named streets. Checked only that both halves have land and some JRC always-water (west 6.5%, east 0.6%)."
+  },
+  "labels": {
+    "smooth_px": 5,
+    "change_db": 3.5,
+    "water_db": -17.0,
+    "persistent_pct": 50,
+    "how_chosen": "2026-11-06, practice (west) side + wet/dry controls only (S26). change_db = smallest 0.5 dB step where both controls give <=1% false 'louder' on practice land (3.5 dB: wet 0.96%, dry 0.55%). water_db = first whole dB where <=1% of practice land is below it in the smoothed August reference (-17 dB: 0.7% land; catches only 33% of JRC always-water pixels, so the dark-water label is weak here)."
+  }
+}

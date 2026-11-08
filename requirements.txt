@@ -1,0 +1,70 @@
+# Pinned, tested dependency set for M2 (created 2026-10-01 on Windows 11, Python 3.14.4, 64-bit).
+# Install (macOS): /opt/homebrew/bin/python3.13 -m venv .venv  then  .venv/bin/python -m pip install -r requirements.txt
+# Re-tested 2026-11-04 on macOS arm64, Python 3.13.16: same versions install, pip check clean, 19 tests pass, outputs byte-identical.
+# Windows: py -m venv .venv  then  .venv\Scripts\python -m pip install -r requirements.txt
+# Direct needs: earthengine-api (talk to GEE), rasterio (read/write GeoTIFFs; bundles GDAL 3.12.2), numpy (grid maths).
+# M5 (2026-11-07): pystac[validation] 1.16.0 (build + schema-validate the STAC catalogue) and rustac 0.9.19 (local STAC API server, in-memory). Everything else below is pulled in by these. Tests: standard-library unittest.
+# Re-tested 2026-11-07 (macOS arm64, Python 3.13.16): pip check clean, 46 tests pass.
+affine==3.0.1
+attrs==26.1.0
+certifi==2026.7.22
+cffi==2.1.1
+charset-normalizer==3.5.2
+click==8.5.0
+cryptography==50.0.2
+earthengine-api==1.7.46
+google-api-core==2.40.0
+google-api-python-client==2.201.0
+google-auth-httplib2==0.4.4
+google-auth==2.59.1
+google-cloud-core==2.8.0
+google-cloud-storage==3.16.0
+google-crc32c==1.9.0
+google-resumable-media==2.11.0
+googleapis-common-protos==1.75.5
+httplib2==0.32.0
+idna==3.20
+jsonschema-specifications==2025.9.1
+jsonschema==4.26.0
+numpy==2.5.3
+opentelemetry-api==1.45.0
+proto-plus==1.29.0
+protobuf==7.36.2
+pyasn1==0.6.4
+pyasn1_modules==0.4.2
+pycparser==3.0
+pyparsing==3.3.3
+pystac-core==1.16.0
+pystac-ext-classification==2.0.2
+pystac-ext-datacube==2.2.2
+pystac-ext-eo==1.1.2
+pystac-ext-file==2.1.2
+pystac-ext-grid==1.1.2
+pystac-ext-item-assets==1.0.2
+pystac-ext-label==1.0.3
+pystac-ext-mgrs==1.0.2
+pystac-ext-mlm==1.4.2
+pystac-ext-pointcloud==1.0.2
+pystac-ext-projection==2.0.2
+pystac-ext-raster==1.1.2
+pystac-ext-render==2.0.1
+pystac-ext-sar==1.0.2
+pystac-ext-sat==1.0.2
+pystac-ext-scientific==1.0.2
+pystac-ext-storage==2.0.2
+pystac-ext-table==1.2.2
+pystac-ext-timestamps==1.1.2
+pystac-ext-version==1.2.2
+pystac-ext-view==1.0.2
+pystac-ext-xarray-assets==1.0.2
+pystac==1.16.0
+python-dateutil==4.0.0
+rasterio==1.5.2
+referencing==0.37.0
+requests==2.34.2
+rpds-py==2026.9.1
+rustac==0.9.19
+typing_extensions==4.16.0
+tzdata==2026.6
+uritemplate==4.2.0
+urllib3==2.8.0

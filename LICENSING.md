@@ -1,0 +1,2 @@
+# Licence decisions before public release
+The author's code licence is not selected by this planning pack. Choose it explicitly at the release gate. Dependencies, pretrained weights and datasets retain their own terms; a code licence does not grant rights to imagery or models. Preserve source notices, record modifications and do not redistribute assets while rights are unresolved. The included provider metadata is provenance, not permission to republish provider imagery. See INVESTIGATION.md for known source-specific gates.

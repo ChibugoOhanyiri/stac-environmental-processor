@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "lekki-5km-flood-change-2026",
+  "stac_version": "1.1.0",
+  "description": "Derived Sentinel-1 change labels for a 5 km square of central Lekki: the reported flood morning, the next heavy rain, and wet and dry control days, each against an August 2026 median. Measured surface change consistent with the reported flood (PRD level 2). Not a validated flood-extent map; see evaluation/ASSESSMENT.md.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "Lekki 5 km radar change, Lagos flood of 30 June 2026"
+    },
+    {
+      "rel": "item",
+      "href": "./lekki-5km-2026-06-30-flood/lekki-5km-2026-06-30-flood.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./lekki-5km-2026-07-12-after/lekki-5km-2026-07-12-after.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./lekki-5km-2026-09-10-control-wet/lekki-5km-2026-09-10-control-wet.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./lekki-5km-2026-09-22-control-dry/lekki-5km-2026-09-22-control-dry.json",
+      "type": "application/geo+json"
+    }
+  ],
+  "lekki:attribution": "Contains modified Copernicus Sentinel data (2026), processed in Google Earth Engine; JRC Global Surface Water (EC JRC/Google).",
+  "title": "Lekki 5 km radar change, Lagos flood of 30 June 2026",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          3.51735021922372,
+          6.422380892388354,
+          3.562613651674692,
+          6.467657560664868
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-06-30T05:29:17Z",
+          "2026-09-22T05:29:21Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "ESA / Copernicus",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Google Earth Engine",
+      "roles": [
+        "host"
+      ]
+    },
+    {
+      "name": "Chibugo Ohanyiri (with AI assistance)",
+      "roles": [
+        "processor"
+      ]
+    }
+  ]
+}

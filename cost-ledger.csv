@@ -1,0 +1,8 @@
+date,item,provider,tier,cost_usd,note
+2026-09-27,CDSE account,Copernicus Data Space Ecosystem,free,0,created; unused
+2026-09-28,Earth Engine project (Community Tier),Google,noncommercial free,0,no billing account attached; eligibility to 27 Mar 2028
+2026-10-01 to 2026-11-07,All Earth Engine searches and computePixels downloads (about 20 runs; 1 km and 5 km squares),Google Earth Engine,noncommercial free,0,small requests; no quota errors seen
+2026-11-04 to 2026-11-07,GPM IMERG and JRC GSW reads,Google Earth Engine,noncommercial free,0,
+2026-11-07,OpenStreetMap Nominatim lookups (10 place names),OpenStreetMap,free public service,0,1 request per second; generic user agent
+2026-09-25 to 2026-11-07,GitHub private repo + public portfolio index,GitHub,free,0,
+2026-11-07,Viewer hosting,none (not deployed),n/a,0,public hosting needs the user's approval
